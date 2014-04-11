@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	// <link-effect-transitions>
 	$('.link-effect').on('click',function (e) {
-		e.preventDefault();
 
+		e.preventDefault();
+		$("#navbar").collapse('hide');
 		var target = this.hash,
 		$target = $(target);
 
