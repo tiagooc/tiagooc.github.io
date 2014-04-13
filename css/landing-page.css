@@ -181,3 +181,7 @@ p.copyright {
 #skills_table img{
     width:100px;
 }
+
+.text{
+	text-align: justify;
+}
