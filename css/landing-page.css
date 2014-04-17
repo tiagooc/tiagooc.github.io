@@ -185,3 +185,9 @@ p.copyright {
 .text{
 	text-align: justify;
 }
+
+#ninja-div img{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
