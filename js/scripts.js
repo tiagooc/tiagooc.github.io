@@ -22,6 +22,12 @@ $(window).load(function() {
 	if (mq.matches) {
 		var margin = ($('#skills_row').height() - $('#ninja-div').height()) / 2;
 		$('#ninja-div').css('margin-top', margin);
+
+        var margin_education = ($('#education-row').height() - $('#education-img').height()) / 2;
+        $('#education-img').css('margin-top', margin_education);
+
+        var margin_about = ($('#about-row').height() - $('#about-img').height()) / 2;
+        $('#about-img').css('margin-top', margin_about);
 	}
 
 	mq = window.matchMedia( "(max-width: 486px)" );
