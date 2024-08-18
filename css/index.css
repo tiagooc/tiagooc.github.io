@@ -1,0 +1,42 @@
+body {
+    background-color: #000;
+    color: #00FF00;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#terminal {
+    background-color: #000;
+    border: 2px solid #00FF00;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+#input-line {
+    display: flex;
+}
+
+#input-line::before {
+    content: "$ ";
+    white-space: nowrap;
+}
+
+input {
+    background-color: #000;
+    color: #00FF00;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: monospace;
+}
+
+.output {
+    white-space: pre-wrap;
+}
