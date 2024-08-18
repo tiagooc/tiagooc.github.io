@@ -1,40 +1,70 @@
-$(document).ready(function(){
-	// <link-effect-transitions>
-	$('.link-effect').on('click',function (e) {
+document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
 
-		e.preventDefault();
-		$("#navbar").collapse('hide');
-		var target = this.hash,
-		$target = $(target);
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            const command = input.value.trim().toLowerCase();
+            handleCommand(command);
+            input.value = ""; // Clear the input field
+        }
+    });
 
-		$('html, body').stop().animate({
-			'scrollTop': $target.offset().top
-		}, 900, 'swing', function () {
-			window.location.hash = target;
-		});
-	});
-	// </link-effect-transitions>
+    function handleCommand(command) {
+        addOutputLine(`$ ${command}`);
+
+        const response = getCommandResponse(command);
+        if (response) {
+            addOutputLine(response);
+        }
+
+        scrollToBottom();
+    }
+
+    function getCommandResponse(command) {
+        switch (command) {
+            case "help":
+                return helpMessage();
+            case "about":
+                return aboutMessage();
+            case "linkedin":
+                return linkedinMessage();
+            case "clear":
+                output.innerHTML = "";
+                return null;
+            default:
+                return `Command not found: ${command}<br>Type <strong>help</strong> for available commands`;
+        }
+    }
+
+    function helpMessage() {
+        return "Available commands:\n" +
+            "<strong>about</strong>\n" +
+            "<strong>linkedin</strong>";
+    }
+
+    function aboutMessage() {
+        return "I’m a curious engineer who likes to learn new stuff.\n" +
+            "These last few years I’ve been focusing on backend development while designing, developing and maintaining high throughput, scalable and resilient applications.\n" +
+            "I’ve been working with C# and .NET, but I like to keep a “right tool for the job” mindset.\n" +
+            "I’m currently based in Porto, Portugal.";
+    }
+
+    function linkedinMessage() {
+        return createLink("https://www.linkedin.com/in/tiagooc/", "https://www.linkedin.com/in/tiagooc/");
+    }
+
+    function createLink(url, text) {
+        return `<a target='_blank' href='${url}'>${text}</a>`;
+    }
+
+    function addOutputLine(content) {
+        const responseLine = document.createElement("div");
+        responseLine.innerHTML = content;
+        output.appendChild(responseLine);
+    }
+
+    function scrollToBottom() {
+        output.scrollTop = output.scrollHeight;
+    }
 });
-
-
-$(window).load(function() {
-	var mq = window.matchMedia( "(min-width: 768px)" );
-	if (mq.matches) {
-		var margin = ($('#skills_row').height() - $('#ninja-div').height()) / 2;
-		$('#ninja-div').css('margin-top', margin);
-
-        var margin_education = ($('#education-row').height() - $('#education-img').height()) / 2;
-        $('#education-img').css('margin-top', margin_education);
-
-        var margin_about = ($('#about-row').height() - $('#about-img').height()) / 2;
-        $('#about-img').css('margin-top', margin_about);
-	}
-
-	mq = window.matchMedia( "(max-width: 486px)" );
-	if (mq.matches) {
-		$('#bottom-link-list').removeClass('list-inline');
-		$('#bottom-link-list').addClass('list-unstyled');
-		console.log("match");
-	}
-});
-
